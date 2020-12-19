@@ -1,0 +1,8 @@
+FROM dacarvalho/python-grpc AS BUILD-ENV
+
+ADD qemu-arm-static /usr/bin
+RUN chmod +x /usr/bin/qemu-arm-static
+
+FROM dacarvalho/python-grpc
+
+COPY --from=BUILD-ENV /usr/bin/qemu-arm-static /usr/bin
