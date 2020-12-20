@@ -5,7 +5,7 @@ on:
     # Publish `main` as Docker `latest` image.
     branches:
       - main
-    paths: 'python-grpc-qemu/'
+    paths: 'python-grpc-qemu/**'
 
     # Publish `v1.2.3` tags as releases.
     tags:
