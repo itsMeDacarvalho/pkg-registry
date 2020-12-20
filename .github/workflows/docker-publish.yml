@@ -23,9 +23,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      
+      - name: Change to package directory
+        run: |
+          cd python-grpc-qemu
 
       - name: Build image
-        run: docker build . --file python-grpc-qemu/Dockerfile.arm32v7 --tag $IMAGE_NAME
+        run: docker build . --file Dockerfile.arm32v7 --tag $IMAGE_NAME
 
       - name: Log into registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
