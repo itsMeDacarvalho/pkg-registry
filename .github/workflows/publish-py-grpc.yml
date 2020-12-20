@@ -15,7 +15,7 @@ on:
 
 env:
   # TODO: Change variable to your image's name.
-  IMAGE_NAME: python-grpc
+  IMAGE_NAME: py-grpc
 
 jobs:
   push:
@@ -27,7 +27,7 @@ jobs:
         
       - name: Build image
         run: docker build . --file Dockerfile.arm32v7 --tag $IMAGE_NAME
-        working-directory: python-grpc/
+        working-directory: py-grpc/
 
       - name: Log into registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
