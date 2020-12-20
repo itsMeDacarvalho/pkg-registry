@@ -22,16 +22,29 @@ jobs:
     if: github.event_name == 'push'
 
     steps:
-      - uses: actions/checkout@v2
+      - 
+        name: Code checkout
+        uses: actions/checkout@v2
+      
+      -
+        name: Set up QEMU
+        id: qemu
+        uses: docker/setup-qemu-action@v1
+        with:
+          image: tonistiigi/binfmt:latest
+          platforms: all
 
-      - name: Build image
+      - 
+        name: Build image
         run: docker build . --file Dockerfile.arm32v7 --tag $IMAGE_NAME
         working-directory: python-grpc-qemu/
 
-      - name: Log into registry
+      - 
+        name: Log into registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
 
-      - name: Push image
+      - 
+        name: Push image
         run: |
           IMAGE_ID=docker.pkg.github.com/${{ github.repository }}/$IMAGE_NAME
 
