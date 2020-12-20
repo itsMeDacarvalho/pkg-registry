@@ -5,7 +5,7 @@ on:
     # Publish `main` as Docker `latest` image.
     branches:
       - main
-    paths: 'py-grpc/**.Dockerfile.arm32v7'
+    paths: 'py-grpc/'
 
     # Publish `v1.2.3` tags as releases.
     tags:
